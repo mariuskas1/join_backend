@@ -1,7 +1,10 @@
-from django.contrib import admin
-from django.urls import path
-from .views import TaskViewSet
+from django.urls import path, include
+from .views import TaskViewSet, SubtasktViewSet
+from rest_framework import routers
+
+router = routers.SimpleRouter()
+router.register(r'tasks', TaskViewSet)
 
 urlpatterns = [
-    path('', TaskViewSet.as_view()),
+    path('', include(router.urls)),
 ]
