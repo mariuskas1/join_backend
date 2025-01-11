@@ -51,3 +51,12 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+class User(models.Model):
+    name = models.CharField(max_length=255)
+    mail = models.EmailField(max_length=255)
+    password = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
