@@ -39,3 +39,15 @@ class Subtask(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+class Contact(models.Model):
+    name = models.CharField(max_length=255)
+    initials = models.CharField(max_length=5)
+    mail = models.EmailField()
+    phone = models.CharField(max_length=30)
+    color = models.CharField(max_length=15)
+    info = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
