@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
-        fields = ['user', 'bio', 'location']
+        fields = ['user', 'name']
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
@@ -14,7 +14,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password', 'repeated_password']
+        fields = ['username', 'email', 'password', 'repeated_password', 'name']
         extra_kwargs = {
             'password': {
                 'write_only': True
@@ -32,7 +32,10 @@ class RegistrationSerializer(serializers.ModelSerializer):
        if User.objects.filter(email=self.validated_data['email']).exists():
             raise serializers.ValidationError("A user with this email already exists.")
        
-       account = User(email=self.validated_data['email'], username=self.validated_data['username'])
+       account = User(
+           email=self.validated_data['email'], 
+           username=self.validated_data['username'],
+           first_name=self.validated_data['name'])
        account.set_password(pw)
        account.save()
        return account

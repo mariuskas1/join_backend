@@ -33,14 +33,15 @@ class RegistrationView(APIView):
             data= {
                 'token': token.key,
                 'username': saved_account.username,
-                'email': saved_account.email
+                'email': saved_account.email,
+                'name': saved_account.first_name
             }
         else:
             data=serializer.errors
         
         return Response(data)
     
-    
+
 
 class CustomLoginView(ObtainAuthToken):
     permission_classes = [AllowAny]
@@ -55,7 +56,8 @@ class CustomLoginView(ObtainAuthToken):
             data = {
                 'token': token.key,
                 'username': user.username,
-                'email': user.email
+                'email': user.email,
+                'name': user.first_name
             }
         else:
             data = serializer.errors
