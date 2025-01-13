@@ -6,6 +6,8 @@ from rest_framework.permissions import AllowAny
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.authtoken.views import ObtainAuthToken
+from django.contrib.auth.models import User
+
 
 
 class UserProfileList(generics.ListCreateAPIView):
@@ -38,6 +40,7 @@ class RegistrationView(APIView):
         
         return Response(data)
     
+    
 
 class CustomLoginView(ObtainAuthToken):
     permission_classes = [AllowAny]
@@ -49,12 +52,12 @@ class CustomLoginView(ObtainAuthToken):
         if serializer.is_valid():
             user = serializer.validated_data['user']
             token, created = Token.objects.get_or_create(user=user)
-            data= {
+            data = {
                 'token': token.key,
                 'username': user.username,
                 'email': user.email
             }
         else:
-            data=serializer.errors
+            data = serializer.errors
         
         return Response(data)
