@@ -45,7 +45,7 @@ class Contact(models.Model):
     name = models.CharField(max_length=255)
     initials = models.CharField(max_length=5)
     mail = models.EmailField()
-    phone = models.CharField(max_length=30)
+    phone = models.CharField(max_length=30, blank=True, null=True)
     color = models.CharField(max_length=15)
     info = models.CharField(max_length=20)
 
