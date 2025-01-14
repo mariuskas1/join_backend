@@ -27,9 +27,7 @@ class Task(models.Model):
     prio = models.CharField(max_length=10, choices=PRIORITY_CHOICES, default='medium')
     assignedTo = models.CharField(max_length=100)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='todo')
-    # subtasks = models.JSONField(default=list)  # Store subtasks as a JSON array
-
-    id = models.CharField(max_length=30, primary_key=True)
+    
 
     def __str__(self):
         return self.title
@@ -38,8 +36,6 @@ class Task(models.Model):
 class Subtask(models.Model):
     title = models.CharField(max_length=255)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='todo')
-    id = models.CharField(max_length=30, primary_key=True)
-
     task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='subtasks', null=True)
 
     def __str__(self):
