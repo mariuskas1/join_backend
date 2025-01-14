@@ -25,7 +25,7 @@ class Task(models.Model):
     category = models.CharField(max_length=100)
     date = models.DateField()
     prio = models.CharField(max_length=10, choices=PRIORITY_CHOICES, default='medium')
-    assignedTo = models.CharField(max_length=100)
+    assignedTo = models.CharField(max_length=100, blank=True, null=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='todo')
     
 
