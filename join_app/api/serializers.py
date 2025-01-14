@@ -9,6 +9,8 @@ class SubtaskSerializer(serializers.ModelSerializer):
 
 
 class TaskSerializer(serializers.ModelSerializer):
+    subtasks = SubtaskSerializer(many=True, required=False)
+
     class Meta:
         model = Task
         fields = '__all__'
