@@ -8,7 +8,6 @@ from rest_framework.response import Response
 
 
 class TaskViewSet(viewsets.ModelViewSet):
-    permission_classes = [AllowAny]
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
 
@@ -29,18 +28,15 @@ class TaskViewSet(viewsets.ModelViewSet):
 
 
 class SubtaskViewSet(viewsets.ModelViewSet):
-    permission_classes = [AllowAny]
     queryset = Subtask.objects.all()
     serializer_class = SubtaskSerializer
 
 
 class ContactViewSet(viewsets.ModelViewSet):
-    permission_classes = [AllowAny]
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    permission_classes = [AllowAny]
     queryset = User.objects.all()
     serializer_class = UserSerializer
