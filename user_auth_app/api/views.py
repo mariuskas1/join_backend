@@ -7,6 +7,8 @@ from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.authtoken.views import ObtainAuthToken
 from django.contrib.auth.models import User
+import random
+import string
 
 
 
@@ -63,3 +65,20 @@ class CustomLoginView(ObtainAuthToken):
             data = serializer.errors
         
         return Response(data)
+    
+    
+class GuestLoginView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        random_username = "guest_" + ''.join(random.choices(string.ascii_letters + string.digits, k=8))
+        
+        guest_user = User.objects.create_user(username=random_username)
+        
+        token, _ = Token.objects.get_or_create(user=guest_user)
+
+        return Response({
+            "token": token.key,
+            "username": guest_user.username,
+            "is_guest": True
+        })
