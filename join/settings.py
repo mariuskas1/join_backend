@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-it-s8@%+8@tpja3ecm4$0o5+@9gg&%6b1jrrz_3n5yq8u7hvxf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
   'marius-kasparek.developerakademie.org',
@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'join_app',
-    'user_auth_app'
+    'user_auth_app',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -65,6 +66,8 @@ CSRF_TRUSTED_ORIGINS = [
 
   'http://localhost:5500',
 
+  'https://join.marius-kasparek.de',
+
 ]
 
 
@@ -74,6 +77,14 @@ CORS_ALLOWED_ORIGINS = [
 
   'http://localhost:5500',
 
+  'https://join.marius-kasparek.de',
+
+]
+
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'authorization',
+    
 ]
 
 ROOT_URLCONF = 'join.urls'
