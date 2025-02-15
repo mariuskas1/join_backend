@@ -8,7 +8,7 @@ from django.db import models
 PRIORITY_CHOICES = [
         ('low', 'Low'),
         ('medium', 'Medium'),
-        ('high', 'High'),
+        ('urgent', 'Urgent'),
     ]
     
 STATUS_CHOICES = [
